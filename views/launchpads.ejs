@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <nav class="navbar is-success" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="./">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/SpaceX-Logo.svg/2560px-SpaceX-Logo.svg.png"
+                    width="150" height="28">
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="./capsules">
+                    Capsules
+                </a>
+                <a class="navbar-item" href="./cores">
+                    Cores
+                </a>
+                <a class="navbar-item" href="./crew">
+                    Crew
+                </a>
+                <a class="navbar-item" href="./dragons">
+                    Dragons
+                </a>
+                <a class="navbar-item" href="./landpads">
+                    Landpads
+                </a>
+                <a class="navbar-item" href="./launches">
+                    Launches
+                </a>
+                <a class="navbar-item is-active" href="./launchpads">
+                    Launchpads
+                </a>
+                <a class="navbar-item" href="./payloads">
+                    Payloads
+                </a>
+                <a class="navbar-item" href="./roadster">
+                    Roadster
+                </a>
+                <a class="navbar-item" href="./rockets">
+                    Rockets
+                </a>
+                <a class="navbar-item" href="./ships">
+                    Ships
+                </a>
+                <a class="navbar-item" href="./starlink">
+                    Starlink
+                </a>
+                <a class="navbar-item" href="./history">
+                    History
+                </a>
+
+                <!-- <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        More
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">
+                            About
+                        </a>
+                        <a class="navbar-item">
+                            Jobs
+                        </a>
+                        <a class="navbar-item">
+                            Contact
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item">
+                            Report an issue
+                        </a>
+                    </div>
+                </div> -->
+            </div>
+
+
+        </div>
+    </nav>
+
+    <div class="table-container">
+        <table
+            class="table is-fullwidth has-sticky-column is-narrow is-striped is-bordered is-hoverable has-sticky-header has-sticky-footer">
+            <thead>
+                <tr>
+                    <th><abbr title="Name">Name</abbr></th>
+                    <th><abbr title="ID">ID</abbr></th>
+                    <th><abbr title="Status">Status</abbr></th>
+                    <th><abbr title="Location">Location</abbr></th>
+                    <th><abbr title="Coordinates">Coordinates</abbr></th>
+                    <th><abbr title="Launch Attempts/Successes">Launch Attempts/Successes</abbr></th>
+                    <th><abbr title="Rockets">Rockets</abbr></th>
+                    <th><abbr title="Launches">Launches</abbr></th>
+                    <th><abbr title="Details">Details</abbr></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th><abbr title="Name">Name</abbr></th>
+                    <th><abbr title="ID">ID</abbr></th>
+                    <th><abbr title="Status">Status</abbr></th>
+                    <th><abbr title="Location">Location</abbr></th>
+                    <th><abbr title="Coordinates">Coordinates</abbr></th>
+                    <th><abbr title="Launch Attempts/Successes">Launch Attempts/Successes</abbr></th>
+                    <th><abbr title="Rockets">Rockets</abbr></th>
+                    <th><abbr title="Launches">Launches</abbr></th>
+                    <th><abbr title="Details">Details</abbr></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <% for( let x=0; x < launchpads.length; x++ ) { %>
+                    <% let launchpad=launchpads[x] %>
+                        <tr>
+                            <th>
+                                <%= launchpad.full_name %>
+                                    <br>
+                                    (<%= launchpad.name %>)
+                                        <br>
+                                        <img src="<%= launchpad.images.large[0] %>" alt="<%= launchpad.name %>"
+                                            style="width: 400px;">
+                            </th>
+                            <td>
+                                <%= launchpad.id %>
+                            </td>
+                            <td>
+                                <%= launchpad.status %>
+                            </td>
+                            <td>
+                                <%= launchpad.locality %>, <%= launchpad.region %>
+                            </td>
+                            <td>
+                                <%= launchpad.latitude %>, <%= launchpad.longitude %>
+                            </td>
+                            <td>
+                                Launch Attempts: <%= launchpad.launch_attempts %>
+                                    <br>
+                                    Launch Successes: <%= launchpad.launch_successes %>
+                            </td>
+                            <td>
+                                <% for( let x=0; x < launchpad.rockets.length; x++ ) { %>
+                                    <%= launchpad.rockets[x] %>
+                                        <br>
+                                        <% } %>
+                            </td>
+                            <td>
+                                <% if (launchpad.launches.length < 1) { %>
+                                    None
+                                    <% } else {%>
+                                        <% for( let x=0; x < launchpad.launches.length; x++ ) { %>
+                                            <%= launchpad.launches[x] %>
+                                                <br>
+                                                <% } %>
+                                                    <% } %>
+                            </td>
+                            <td style="max-width: 1000px; word-wrap: break-word;">
+                                <%= launchpad.details%>
+                            </td>
+                        </tr>
+                        <% } %>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
