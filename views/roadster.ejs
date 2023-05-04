@@ -106,6 +106,7 @@
                     <th><abbr title="Launch Video">Launch Video</abbr></th>
                     <th><abbr title="Details">Details</abbr></th>
                     <th><abbr title="Wikipedia">Wikipedia</abbr></th>
+                    <th><abbr title="Images">Images</abbr></th>
                 </tr>
             </thead>
             <tfoot>
@@ -115,6 +116,7 @@
                     <th><abbr title="Launch Video">Launch Video</abbr></th>
                     <th><abbr title="Details">Details</abbr></th>
                     <th><abbr title="Wikipedia">Wikipedia</abbr></th>
+                    <th><abbr title="Images">Images</abbr></th>
                 </tr>
             </tfoot>
             <tbody>
@@ -138,6 +140,13 @@
                     </td>
                     <td>
                         <a href="<%= roadster.wikipedia %>">Wikipedia</a>
+                    </td>
+                    <td>
+                        <% for( let x=0; x < roadster.flickr_images.length; x++ ) { %>
+                            <img src="<%= roadster.flickr_images[x] %>" alt="">
+                            <br>
+                            <% } %>
+
                     </td>
                 </tr>
 
